@@ -20,7 +20,6 @@ import me.poma123.globalwarming.api.events.AsyncWorldPollutionChangeEvent;
  * and the pollution production of items and machines.
  *
  * @author poma123
- *
  */
 public class PollutionManager {
 
@@ -29,9 +28,7 @@ public class PollutionManager {
     /**
      * This returns the pollution amount at a {@link Location}
      *
-     * @param loc
-     *            The {@link Location} to get the pollution amount from
-     *
+     * @param loc The {@link Location} to get the pollution amount from
      * @return the pollution amount at the given {@link Location}
      */
     public static double getPollutionAtLocation(@Nonnull Location loc) {
@@ -41,9 +38,7 @@ public class PollutionManager {
     /**
      * This returns the pollution amount in a {@link World}
      *
-     * @param world
-     *            The {@link World} to get the pollution amount from
-     *
+     * @param world The {@link World} to get the pollution amount from
      * @return the pollution amount in the given {@link World}
      */
     public static double getPollutionInWorld(@Nonnull World world) {
@@ -60,11 +55,8 @@ public class PollutionManager {
     /**
      * This increases the pollution amount in a {@link World}
      *
-     * @param world
-     *            The {@link World} to set pollution amount
-     * @param value
-     *            The value to rise
-     *
+     * @param world The {@link World} to set pollution amount
+     * @param value The value to rise
      * @return whether the change was successful
      */
     public static boolean risePollutionInWorld(@Nonnull World world, @Nonnull double value) {
@@ -89,11 +81,8 @@ public class PollutionManager {
     /**
      * This decreases the pollution amount in a {@link World}
      *
-     * @param world
-     *            The {@link World} to set pollution amount
-     * @param value
-     *            The value to descend
-     *
+     * @param world The {@link World} to set pollution amount
+     * @param value The value to descend
      * @return whether the change was successful
      */
     public static boolean descendPollutionInWorld(@Nonnull World world, @Nonnull double value) {
@@ -118,11 +107,8 @@ public class PollutionManager {
     /**
      * This sets the pollution amount in a {@link World}
      *
-     * @param world
-     *            The {@link World} to set pollution amount
-     * @param newValue
-     *            The value to set
-     *
+     * @param world    The {@link World} to set pollution amount
+     * @param newValue The value to set
      * @return whether the change was successful
      */
     public static boolean setPollutionInWorld(@Nonnull World world, @Nonnull double newValue) {
@@ -146,9 +132,7 @@ public class PollutionManager {
     /**
      * This returns the pollution production of a {@link ItemStack}
      *
-     * @param item
-     *            The {@link ItemStack} to check
-     *
+     * @param item The {@link ItemStack} to check
      * @return the pollution production of the {@link ItemStack}
      */
     public static double isPollutedItem(@Nonnull ItemStack item) {
@@ -170,9 +154,7 @@ public class PollutionManager {
     /**
      * This returns the pollution production of a {@link SlimefunItem} machine
      *
-     * @param id
-     *            The ID of the {@link SlimefunItem} machine
-     *
+     * @param id The ID of the {@link SlimefunItem} machine
      * @return the pollution production of the {@link SlimefunItem} machine
      */
     public static double isPollutedMachine(@Nonnull String id) {
@@ -189,9 +171,7 @@ public class PollutionManager {
     /**
      * This returns the pollution absorption of a {@link SlimefunItem} machine
      *
-     * @param id
-     *            The ID of the {@link SlimefunItem} machine
-     *
+     * @param id The ID of the {@link SlimefunItem} machine
      * @return the pollution absorption of the {@link SlimefunItem} machine
      */
     public static double isAbsorbentMachine(@Nonnull String id) {

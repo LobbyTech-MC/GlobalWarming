@@ -22,7 +22,6 @@ import javax.annotation.Nonnull;
  * based on default biome temperature, pollution, weather and time.
  *
  * @author poma123
- *
  */
 public class TemperatureManager {
 
@@ -32,6 +31,24 @@ public class TemperatureManager {
     private static final Set<Map.Entry<Biome, Double>> tempSet = GlobalWarmingPlugin.getRegistry().getDefaultBiomeTemperatures().entrySet();
     private final Map<Biome, Double> nightDropMap = GlobalWarmingPlugin.getRegistry().getMaxTemperatureDropsAtNight();
     private final Map<String, EnumMap<Biome, Double>> worldTemperatureChangeFactorMap = new HashMap<>();
+
+    public static double getDifference(@Nonnull double currentValue, @Nonnull double defaultValue, @Nonnull TemperatureType type) {
+        double convertedCurrent = new Temperature(currentValue, type).getConvertedValue();
+        double convertedDefault = new Temperature(defaultValue, type).getConvertedValue();
+
+        double difference = Math.abs(convertedCurrent - convertedDefault);
+
+        if (convertedCurrent < convertedDefault) {
+            difference = difference * -1;
+        }
+
+        return difference;
+    }
+
+    public static boolean isDaytime(@Nonnull World world) {
+        long time = world.getTime();
+        return (time < 12300 || time > 23850);
+    }
 
     protected void runCalculationTask(long delay, long interval) {
         Bukkit.getScheduler().runTaskTimerAsynchronously(GlobalWarmingPlugin.getInstance(), () -> {
@@ -73,13 +90,13 @@ public class TemperatureManager {
 
     public String getTemperatureString(@Nonnull Location loc, @Nonnull TemperatureType tempType) {
         if (!GlobalWarmingPlugin.getRegistry().isWorldEnabled(loc.getWorld().getName())) {
-            return "&cNon-functional in this world.";
+            return "&c在该世界被禁用.";
         }
 
         Temperature temp = getTemperatureAtLocation(loc);
 
         if (temp == null) {
-            return "&7Measuring...";
+            return "&7测量中...";
         }
 
         double celsiusValue = temp.getCelsiusValue();
@@ -105,7 +122,7 @@ public class TemperatureManager {
 
     public String getAirQualityString(@Nonnull World world, @Nonnull TemperatureType tempType) {
         if (!GlobalWarmingPlugin.getRegistry().isWorldEnabled(world.getName()) || world.getEnvironment() != World.Environment.NORMAL) {
-            return "&cNon-functional in this world.";
+            return "&c在该世界被禁用.";
         }
 
         Temperature temp = new Temperature(15.0);
@@ -163,23 +180,5 @@ public class TemperatureManager {
         celsiusValue = celsiusValue + (PollutionManager.getPollutionInWorld(world) * GlobalWarmingPlugin.getRegistry().getPollutionMultiply());
 
         return new Temperature(celsiusValue);
-    }
-
-    public static double getDifference(@Nonnull double currentValue, @Nonnull double defaultValue, @Nonnull TemperatureType type) {
-        double convertedCurrent = new Temperature(currentValue, type).getConvertedValue();
-        double convertedDefault = new Temperature(defaultValue, type).getConvertedValue();
-
-        double difference = Math.abs(convertedCurrent - convertedDefault);
-
-        if (convertedCurrent < convertedDefault) {
-            difference = difference*-1;
-        }
-
-        return difference;
-    }
-
-    public static boolean isDaytime(@Nonnull World world) {
-        long time = world.getTime();
-        return (time < 12300 || time > 23850);
     }
 }

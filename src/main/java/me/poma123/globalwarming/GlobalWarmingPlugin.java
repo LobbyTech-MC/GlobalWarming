@@ -40,7 +40,7 @@ import me.poma123.globalwarming.items.machines.AirCompressor;
 import me.poma123.globalwarming.tasks.BurnTask;
 
 public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
-
+    // 汉化 By ClayCoffee
     private static GlobalWarmingPlugin instance;
     private static Registry registry = new Registry();
     private final TemperatureManager temperatureManager = new TemperatureManager();
@@ -49,14 +49,43 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
     private Config messages;
     private Config biomes;
 
+    public static Registry getRegistry() {
+        return registry;
+    }
+
+    public static TemperatureManager getTemperatureManager() {
+        return instance.temperatureManager;
+    }
+
+    public static GlobalWarmingPlugin getInstance() {
+        return instance;
+    }
+
+    public static GlobalWarmingCommand getCommand() {
+        return instance.command;
+    }
+
+    public static Config getCfg() {
+        return instance.cfg;
+    }
+
+    public static Config getMessagesConfig() {
+        return instance.messages;
+    }
+
+    public static Config getBiomesConfig() {
+        return instance.biomes;
+    }
+
     @Override
     public void onEnable() {
         instance = this;
-
-        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
-            Updater updater = new GitHubBuildsUpdater(this, getFile(), "poma123/GlobalWarming/master");
-            updater.start();
-        }
+        this.getLogger().info("[GlobalWarming] 插件加载中, 内核汉化作者ClayCoffee.");
+//        禁用自动更新
+//        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
+//            Updater updater = new GitHubBuildsUpdater(this, getFile(), "poma123/GlobalWarming/master");
+//            updater.start();
+//        }
 
         new Metrics(this, 9132);
 
@@ -66,7 +95,7 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
             try {
                 Files.copy(this.getClass().getResourceAsStream("/biomes.yml"), biomesFile.toPath());
             } catch (IOException e) {
-                getLogger().log(Level.SEVERE, "Failed to create default biomes.yml file", e);
+                getLogger().log(Level.SEVERE, "创建默认biomes.yml失败", e);
             }
         }
         biomes = new Config(this, "biomes.yml");
@@ -76,7 +105,7 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
             try {
                 Files.copy(this.getClass().getResourceAsStream("/messages.yml"), messagesFile.toPath());
             } catch (IOException e) {
-                getLogger().log(Level.SEVERE, "Failed to create default messages.yml file", e);
+                getLogger().log(Level.SEVERE, "创建默认语言文件失败", e);
             }
         }
         messages = new Config(this, "messages.yml");
@@ -93,7 +122,7 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
     private void registerItems() {
         Category category = new Category(new NamespacedKey(this, "global_warming"), new CustomItem(Items.THERMOMETER, "&2Global Warming"));
 
-        new TemperatureMeter(category, Items.THERMOMETER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        new TemperatureMeter(category, Items.THERMOMETER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.NICKEL_INGOT, new ItemStack(Material.GLASS), SlimefunItems.NICKEL_INGOT,
                 SlimefunItems.NICKEL_INGOT, Items.MERCURY, SlimefunItems.NICKEL_INGOT,
                 SlimefunItems.NICKEL_INGOT, new ItemStack(Material.GLASS), SlimefunItems.NICKEL_INGOT
@@ -105,7 +134,7 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
             }
         }.register(this);
 
-        new TemperatureMeter(category, Items.AIR_QUALITY_METER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        new TemperatureMeter(category, Items.AIR_QUALITY_METER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.BILLON_INGOT, SlimefunItems.BILLON_INGOT, SlimefunItems.BILLON_INGOT,
                 SlimefunItems.SOLDER_INGOT, Items.THERMOMETER, SlimefunItems.SOLDER_INGOT,
                 SlimefunItems.SOLDER_INGOT, SlimefunItems.MAGNET, SlimefunItems.SOLDER_INGOT
@@ -113,11 +142,11 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
             @Override
             public void tick(Block b) {
                 Location loc = b.getLocation();
-                SimpleHologram.update(b, "&7Climate change: " + GlobalWarmingPlugin.getTemperatureManager().getAirQualityString(loc.getWorld(), TemperatureType.valueOf(BlockStorage.getLocationInfo(loc, "type"))));
+                SimpleHologram.update(b, "&7气候改变: " + GlobalWarmingPlugin.getTemperatureManager().getAirQualityString(loc.getWorld(), TemperatureType.valueOf(BlockStorage.getLocationInfo(loc, "type"))));
             }
         }.register(this);
 
-        new AirCompressor(category, Items.AIR_COMPRESSOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        new AirCompressor(category, Items.AIR_COMPRESSOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.SOLDER_INGOT, Items.FILTER, SlimefunItems.SOLDER_INGOT,
                 SlimefunItems.ALUMINUM_BRASS_INGOT, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.ALUMINUM_BRASS_INGOT,
                 SlimefunItems.SOLDER_INGOT, SlimefunItems.BATTERY, SlimefunItems.SOLDER_INGOT
@@ -138,13 +167,13 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
             }
         }.register(this);
 
-        new SlimefunItem(category, Items.EMPTY_CANISTER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        new SlimefunItem(category, Items.EMPTY_CANISTER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 null, SlimefunItems.SOLDER_INGOT, null,
                 SlimefunItems.SOLDER_INGOT, new ItemStack(Material.GLASS_BOTTLE), SlimefunItems.SOLDER_INGOT,
                 SlimefunItems.SOLDER_INGOT, SlimefunItems.SOLDER_INGOT, SlimefunItems.SOLDER_INGOT
         }).register(this);
 
-        new SimpleSlimefunItem<ItemConsumptionHandler>(category, Items.CO2_CANISTER, AirCompressor.RECIPE_TYPE, new ItemStack[] {
+        new SimpleSlimefunItem<ItemConsumptionHandler>(category, Items.CO2_CANISTER, AirCompressor.RECIPE_TYPE, new ItemStack[]{
                 null, null, null,
                 null, Items.EMPTY_CANISTER, null,
                 null, null, null
@@ -172,12 +201,12 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
     }
 
     private void registerResearches() {
-        registerResearch("thermometer", 69696969, "Thermometer", 10, Items.THERMOMETER);
-        registerResearch("air_quality_meter", 69696970, "Air Quality Meter", 30, Items.AIR_QUALITY_METER);
-        registerResearch("air_compressor", 69696971, "Air Compressor", 40, Items.AIR_COMPRESSOR);
-        registerResearch("canisters", 69696972, "Pollution storing", 6, Items.EMPTY_CANISTER, Items.CO2_CANISTER);
-        registerResearch("filter", 69696973, "Filter", 8, Items.FILTER);
-        registerResearch("mercury", 69696973, "Mercury", 12, Items.CINNABARITE, Items.MERCURY);
+        registerResearch("thermometer", 69696969, "温度计", 10, Items.THERMOMETER);
+        registerResearch("air_quality_meter", 69696970, "空气质量检测仪", 30, Items.AIR_QUALITY_METER);
+        registerResearch("air_compressor", 69696971, "空气压缩器", 40, Items.AIR_COMPRESSOR);
+        registerResearch("canisters", 69696972, "储存污染", 6, Items.EMPTY_CANISTER, Items.CO2_CANISTER);
+        registerResearch("filter", 69696973, "过滤器", 8, Items.FILTER);
+        registerResearch("mercury", 69696973, "汞", 12, Items.CINNABARITE, Items.MERCURY);
     }
 
     private void scheduleTasks() {
@@ -220,41 +249,13 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
         research.register();
     }
 
-    public static Registry getRegistry() {
-        return registry;
-    }
-
-    public static TemperatureManager getTemperatureManager() {
-        return instance.temperatureManager;
-    }
-
-    public static GlobalWarmingPlugin getInstance() {
-        return instance;
-    }
-
-    public static GlobalWarmingCommand getCommand() {
-        return instance.command;
-    }
-
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/poma123/GlobalWarming/issues";
+        return "https://github.com/ClayCoffee/GlobalWarming/issues";
     }
 
     @Override
     public JavaPlugin getJavaPlugin() {
         return this;
-    }
-
-    public static Config getCfg() {
-        return instance.cfg;
-    }
-
-    public static Config getMessagesConfig() {
-        return instance.messages;
-    }
-
-    public static Config getBiomesConfig() {
-        return instance.biomes;
     }
 }

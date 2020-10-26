@@ -9,8 +9,9 @@ import me.poma123.globalwarming.GlobalWarmingPlugin;
 import me.poma123.globalwarming.commands.GlobalWarmingCommand;
 
 public class SubCommands {
-    
-    private SubCommands() {}
+
+    private SubCommands() {
+    }
 
     public static Collection<SubCommand> getAllCommands(GlobalWarmingCommand cmd) {
         GlobalWarmingPlugin plugin = cmd.getPlugin();

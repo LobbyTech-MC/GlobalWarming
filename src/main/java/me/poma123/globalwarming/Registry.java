@@ -47,7 +47,7 @@ public class Registry {
             if (biomes.getValue("default-biome-temperatures." + biome.name()) == null) {
                 biomes.setValue("default-biome-temperatures." + biome.name(), 15);
 
-                GlobalWarmingPlugin.getInstance().getLogger().log(Level.INFO, "Added missing biome \"{0}\" to biomes.yml with the temperature value of 15", biome);
+                GlobalWarmingPlugin.getInstance().getLogger().log(Level.INFO, "添加了缺失的生物群系 \"{0}\" 到biomes.yml, 默认温度值已设置为15", biome);
             }
         }
         biomes.save();
@@ -59,7 +59,7 @@ public class Registry {
             try {
                 defaultBiomeTemperatures.put(Biome.valueOf(biome), celsiusValue);
             } catch (IllegalArgumentException ex) {
-                GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load temperature \"{0}\" of the invalid biome \"{1}\"", new Object[] { celsiusValue, biome });
+                GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载无效生物群系\\\"{1}\\\"\"的温度\"{0}\"", new Object[]{celsiusValue, biome});
             }
         }
 
@@ -70,7 +70,7 @@ public class Registry {
             try {
                 maxTemperatureDropsAtNight.put(Biome.valueOf(biome), celsiusValue);
             } catch (IllegalArgumentException ex) {
-                GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load temperature drop \"{0}\" of the invalid biome \"{1}\"", new Object[] { celsiusValue, biome });
+                GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载无效生物群系\\\"{1}\\\"\"的温度下降\"{0}\"", new Object[]{celsiusValue, biome});
             }
         }
 
@@ -109,7 +109,7 @@ public class Registry {
                 double value = cfg.getDouble("pollution.production.machine-recipe-input-items." + id);
 
                 if (value <= 0.0) {
-                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load polluted item \"{0}\" with an invalid pollution value of \"{1}\"", new Object[] { id, value });
+                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载污染物品 \"{0}\" 因为其有无效污染值 \"{1}\"", new Object[]{id, value});
                     continue;
                 }
 
@@ -118,7 +118,7 @@ public class Registry {
                 } else if (SlimefunItem.getByID(id) != null) {
                     pollutedSlimefunItems.put(id, value);
                 } else {
-                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load non-existent polluted item \"{0}\" with a pollution value of \"{1}\"", new Object[] { id, value });
+                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载一个不存在的污染物品 \"{0}\" (污染值\"{1}\")", new Object[]{id, value});
                 }
             }
 
@@ -127,14 +127,14 @@ public class Registry {
                 double value = cfg.getDouble("pollution.production.machines." + id);
 
                 if (value <= 0.0) {
-                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load polluted machine \"{0}\" with an invalid pollution value of \"{1}\"", new Object[] { id, value });
+                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载污染机器 \"{0}\" 因为其有无效污染值 \"{1}\"", new Object[]{id, value});
                     continue;
                 }
 
                 if (SlimefunItem.getByID(id) != null) {
                     pollutedSlimefunMachines.put(id, value);
                 } else {
-                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load non-existent polluted machine \"{0}\" with a pollution value of \"{1}\"", new Object[] { id, value });
+                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载一个不存在的污染机器 \"{0}\" (污染值\"{1}\")", new Object[]{id, value});
                 }
             }
 
@@ -143,14 +143,14 @@ public class Registry {
                 double value = cfg.getDouble("pollution.absorption.machines." + id);
 
                 if (value <= 0.0) {
-                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load absorbent machine \"{0}\" with an invalid absorption value of \"{1}\"", new Object[] { id, value });
+                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载改善机器 \"{0}\" 因为其有无效改善值 \"{1}\"", new Object[]{id, value});
                     continue;
                 }
 
                 if (SlimefunItem.getByID(id) != null) {
                     absorbentSlimefunMachines.put(id, value);
                 } else {
-                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load non-existent absorbent machine \"{0}\" with an absorption value of \"{1}\"", new Object[] { id, value });
+                    GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载一个不存在的改善机器 \"{0}\" (改善值\"{1}\")", new Object[]{id, value});
                 }
             }
         }, 100);
@@ -168,7 +168,7 @@ public class Registry {
         if (tempResearch.isPresent() && tempResearch.get().isEnabled()) {
             researchNeededForPlayerMechanics = tempResearch.get();
         } else {
-            GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "Could not load research \"{0}\"", new Object[] { researchKey });
+            GlobalWarmingPlugin.getInstance().getLogger().log(Level.WARNING, "无法加载研究 \"{0}\"", new Object[]{researchKey});
         }
     }
 

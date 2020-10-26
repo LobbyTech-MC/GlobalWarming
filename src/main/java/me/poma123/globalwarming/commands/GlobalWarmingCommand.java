@@ -22,16 +22,16 @@ import me.poma123.globalwarming.commands.subcommands.SubCommands;
 
 public class GlobalWarmingCommand implements CommandExecutor, Listener {
 
-    private boolean registered = false;
     private final GlobalWarmingPlugin plugin;
     private final List<SubCommand> commands = new LinkedList<>();
+    private boolean registered = false;
 
     public GlobalWarmingCommand(@Nonnull GlobalWarmingPlugin plugin) {
         this.plugin = plugin;
     }
 
     public void register() {
-        Validate.isTrue(!registered, "GlobalWarming's subcommands have already been registered!");
+        Validate.isTrue(!registered, "GlobalWarming的子命令已被注册!");
 
         registered = true;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);

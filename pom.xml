@@ -12,15 +12,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <!-- Spigot properties -->
+        <!-- Sp igot properties -->
         <spigot.version>1.16.3</spigot.version>
         <spigot.javadocs>https://hub.spigotmc.org/javadocs/spigot/</spigot.javadocs>
-
-        <!-- Default settings for sonarcloud.io -->
-        <sonar.projectKey>poma123_GlobalWarming</sonar.projectKey>
-        <sonar.organization>poma123</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.log.level>DEBUG</sonar.log.level>
     </properties>
 
     <repositories>

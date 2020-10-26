@@ -1,18 +1,18 @@
-# Available values: CELSIUS, FAHRENHEIT, KELVIN
+# 合法的值: CELSIUS(摄氏度), FAHRENHEIT(华氏度), KELVIN(开尔文)
 temperature-scale: CELSIUS
 messages:
-  climate-change: '&c[GlobalWarming] &eThe global temperature rising value is now: %value%'
-  breaking-news: '&c[GlobalWarming] &e&nBreaking news:&3 %news%'
+  climate-change: '&c[GlobalWarming] &e现在全球温度上升值是: %value%'
+  breaking-news: '&c[GlobalWarming] &e&n劲爆新闻:&3 %news%'
   news:
-  - 'People rescued from flooded homes by boat.'
-  - 'Tornadoes caught on camera across two counties.'
-  - 'Texas storm: "Never seen a light show like that"'
-  - 'Flooding in Venice and deadly storms across Italy.'
-  - 'Dramatic storms across Wales are captured on camera.'
-  - 'Lighting storms struck Washington DC as the city was under a flash flood warning.'
-  - 'Forest fires in Chernobyl exclusion zone bring a hike in radiation.'
-  - 'Satellite images show expanding fire at South American tri-border area.'
-  - 'Activists are protesting against coal mining.'
-  - 'Several countries started building more EcoPower generators to reduce emission.'
-  - 'Venice floods close city to cruise ships for six days.'
-  - 'Nether star reactor explodes in Zambia due to overheating. Africa is experiencing continent-wide withering.'
+    - '人们使用船从被水淹没的家中逃离.'
+    - '龙卷风已在两个国家上出现.'
+    - '德州风暴: "从来没有看过这样的风暴灯光秀!"'
+    - '威尼斯遭遇巨型洪水, 意大利全境被风暴侵袭.'
+    - '摄像机拍下了威尔士各地的剧烈风暴.'
+    - '由于华盛顿特区处于山洪预警下, 雷雨袭击了该地区.'
+    - '切尔诺贝利禁区的森林大火使辐射值增加.'
+    - '卫星图像显示, 南美洲三边界地区的火势不断扩大.'
+    - '游行人士正在抗议煤矿开采.'
+    - '一些国家开始建造更多的超级能源发电机以减少污染排放.'
+    - '威尼斯洪水使这座城市封闭游轮长达六天.'
+    - '由于过热, 下界之星反应堆在赞比亚爆炸. 非洲正在经历整个大陆的干旱.'

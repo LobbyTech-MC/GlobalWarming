@@ -1,8 +1,8 @@
 options:
-  auto-update: true
+  auto-update: false
 
 worlds:
-- disabled_world
+  - 禁用的世界
 
 world-filter-type: blacklist
 

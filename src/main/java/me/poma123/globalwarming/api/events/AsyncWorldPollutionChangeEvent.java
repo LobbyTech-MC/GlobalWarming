@@ -11,7 +11,6 @@ import org.bukkit.event.HandlerList;
  * This {@link Event} is fired whenever the pollution level has changed in a {@link World}.
  *
  * @author poma123
- *
  */
 public class AsyncWorldPollutionChangeEvent extends Event {
     public static final HandlerList handlers = new HandlerList();
@@ -27,6 +26,11 @@ public class AsyncWorldPollutionChangeEvent extends Event {
         this.world = world;
         this.oldValue = oldValue;
         this.newValue = newValue;
+    }
+
+    @Nonnull
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 
     /**
@@ -57,11 +61,6 @@ public class AsyncWorldPollutionChangeEvent extends Event {
     @Nonnull
     public double getNewValue() {
         return newValue;
-    }
-
-    @Nonnull
-    public static HandlerList getHandlerList() {
-        return handlers;
     }
 
     @Nonnull

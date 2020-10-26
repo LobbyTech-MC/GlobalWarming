@@ -53,7 +53,7 @@ public class PollutionListener implements Listener {
             return;
         }
 
-        risePollutionTry(world, e.getGenerator().getId(), new ItemStack[]{ e.getMachineFuel().getInput() });
+        risePollutionTry(world, e.getGenerator().getId(), new ItemStack[]{e.getMachineFuel().getInput()});
         descendPollutionTry(world, e.getGenerator().getId());
     }
 
@@ -65,7 +65,7 @@ public class PollutionListener implements Listener {
             return;
         }
 
-        risePollutionTry(world, e.getReactor().getId(), new ItemStack[]{ e.getMachineFuel().getInput() });
+        risePollutionTry(world, e.getReactor().getId(), new ItemStack[]{e.getMachineFuel().getInput()});
         descendPollutionTry(world, e.getReactor().getId());
     }
 
@@ -179,13 +179,13 @@ public class PollutionListener implements Listener {
 
     private double calculatePollutionValue(String id, ItemStack[] recipeInput) {
         double pollutionValue = 0.0;
-        
+
         pollutionValue += PollutionManager.isPollutedMachine(id);
 
         for (ItemStack item : recipeInput) {
             pollutionValue += PollutionManager.isPollutedItem(item);
         }
-        
+
         return pollutionValue;
     }
 

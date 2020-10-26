@@ -7,7 +7,6 @@ import javax.annotation.Nonnull;
  * {@link TemperatureType} scales.
  *
  * @author poma123
- *
  */
 public class Temperature {
     private double celsiusValue;
