@@ -87,7 +87,7 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
 //            updater.start();
 //        }
 
-        new Metrics(this, 9132);
+//        new Metrics(this, 9132);
 
         // Create configuration files
         final File biomesFile = new File(getDataFolder(), "biomes.yml");
