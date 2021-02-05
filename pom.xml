@@ -43,7 +43,7 @@
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <defaultGoal>clean package</defaultGoal>
 
-        <finalName>${project.name} v${project.version}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
 
         <plugins>
             <!-- Compiler plugin -->
