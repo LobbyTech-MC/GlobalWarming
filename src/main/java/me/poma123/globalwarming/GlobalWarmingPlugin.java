@@ -20,12 +20,12 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemConsumptionHandler;
 import io.github.thebusybiscuit.slimefun4.core.researching.Research;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import me.mrCookieSlime.CSCoreLibPlugin.cscorelib2.updater.GitHubBuildsUpdater;
-import me.mrCookieSlime.CSCoreLibPlugin.cscorelib2.updater.Updater;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
+import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
+import me.mrCookieSlime.Slimefun.cscorelib2.updater.Updater;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.poma123.globalwarming.api.TemperatureType;
@@ -33,6 +33,7 @@ import me.poma123.globalwarming.commands.GlobalWarmingCommand;
 import me.poma123.globalwarming.items.machines.TemperatureMeter;
 import me.poma123.globalwarming.items.CinnabariteResource;
 import me.poma123.globalwarming.listeners.PollutionListener;
+import me.poma123.globalwarming.listeners.WorldListener;
 import me.poma123.globalwarming.tasks.FireTask;
 import me.poma123.globalwarming.tasks.MeltTask;
 import me.poma123.globalwarming.tasks.SlownessTask;
@@ -117,6 +118,7 @@ public class GlobalWarmingPlugin extends JavaPlugin implements SlimefunAddon {
 
         command.register();
         Bukkit.getPluginManager().registerEvents(new PollutionListener(), this);
+        Bukkit.getPluginManager().registerEvents(new WorldListener(), this);
     }
 
     private void registerItems() {

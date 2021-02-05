@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 
 import io.github.thebusybiscuit.slimefun4.utils.PatternUtils;
 import me.mrCookieSlime.Slimefun.cscorelib2.chat.ChatColors;
-import me.mrCookieSlime.Slimefun.cscorelib2.math.DoubleHandler;
 import me.poma123.globalwarming.GlobalWarmingPlugin;
+import me.poma123.globalwarming.TemperatureManager;
 import me.poma123.globalwarming.api.PollutionManager;
 import me.poma123.globalwarming.commands.GlobalWarmingCommand;
 import me.poma123.globalwarming.commands.SubCommand;
@@ -27,7 +27,7 @@ class PollutionCommand extends SubCommand {
 
                 if (world != null && GlobalWarmingPlugin.getRegistry().isWorldEnabled(world.getName())) {
                     if (args[1].equalsIgnoreCase("get")) {
-                        double pollution = DoubleHandler.fixDouble(PollutionManager.getPollutionInWorld(world), 2);
+                        double pollution = TemperatureManager.fixDouble(PollutionManager.getPollutionInWorld(world), 2);
 
                         sender.sendMessage(ChatColors.color("&b在世界 &a" + world.getName() + "的污染值&b: &a" + pollution));
                     } else if (args[1].equalsIgnoreCase("set")) {
