@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.poma123</groupId>
     <artifactId>GlobalWarming</artifactId>
-    <version>1.0.0</version>
+    <version>unoffical-1.0.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
