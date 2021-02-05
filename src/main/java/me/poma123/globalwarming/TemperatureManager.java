@@ -32,24 +32,6 @@ public class TemperatureManager {
     private final Map<Biome, Double> nightDropMap = GlobalWarmingPlugin.getRegistry().getMaxTemperatureDropsAtNight();
     private final Map<String, EnumMap<Biome, Double>> worldTemperatureChangeFactorMap = new HashMap<>();
 
-    public static double getDifference(@Nonnull double currentValue, @Nonnull double defaultValue, @Nonnull TemperatureType type) {
-        double convertedCurrent = new Temperature(currentValue, type).getConvertedValue();
-        double convertedDefault = new Temperature(defaultValue, type).getConvertedValue();
-
-        double difference = Math.abs(convertedCurrent - convertedDefault);
-
-        if (convertedCurrent < convertedDefault) {
-            difference = difference * -1;
-        }
-
-        return difference;
-    }
-
-    public static boolean isDaytime(@Nonnull World world) {
-        long time = world.getTime();
-        return (time < 12300 || time > 23850);
-    }
-
     protected void runCalculationTask(long delay, long interval) {
         Bukkit.getScheduler().runTaskTimerAsynchronously(GlobalWarmingPlugin.getInstance(), () -> {
 
@@ -209,7 +191,7 @@ public class TemperatureManager {
                 format.append(".");
             format.append("#");
         }
-        return Double.valueOf(new DecimalFormat(format.toString()).format(amount).replace(",", "."));
+        return Double.parseDouble(new DecimalFormat(format.toString()).format(amount).replace(",", "."));
     }
 
     public static double fixDouble(double amount) {
